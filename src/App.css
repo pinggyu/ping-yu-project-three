@@ -8,16 +8,17 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 /* VARIABLES */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
 
 :root {
 
     /* Typography */
-    --ff-primary: 'Inter';
+    --ff-body: 'Inter';
+    --ff-header: 'Source Sans Pro';
 
     /* Colors */
-    --clr-accent: #15883e;
-    --clr-light-accent: #1db954;
+    --clr-accent: #224b5d;
+    --clr-light-accent: #55c8d5;
     --clr-white: #efefef;
     --clr-blue: #e5e6e6;
     --clr-black: #292f36;
@@ -30,6 +31,12 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     max-width: 1480px;
     margin: 0 auto;
     width: 90%;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 html {
@@ -46,12 +53,29 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--ff-body), sans-serif;
     background-color: var(--clr-blue);
 }
 
 section {
     padding-top: 2.5rem;
+}
+
+/* TYPOGRAPHY & RESET DEFAULTS */
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff-header), sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-transform: uppercase;
 }
 
 /* PAGE ELEMENTS */
@@ -66,7 +90,6 @@ button {
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 2px;
-    min-width: 2.5rem;
     text-transform: uppercase;
     white-space: normal;
     font-weight: 700;
@@ -108,7 +131,7 @@ button:hover {
     height: fit-content;
     background-color: white;
     padding: 1rem;
-    border-radius: 10%;
+    border-radius: 50px;
 }
 
 /* ADD FORM */
@@ -126,26 +149,74 @@ button:hover {
 
 .cancelBtn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 50px;
+}
+
+::placeholder {
+    opacity: 0.5;
+    font-size: 0.9rem;
+}
+
+label {
+    color: var(--clr-accent);
+}
+
+input {
+    width: 400px;
+    padding: 0.6rem;
+    margin: 0 0.5rem 0.5rem 0;
+    border-style: none;
+    border-bottom: 2px solid var(--clr-accent);
 }
 
 /* HEADER */
 
 header {
+    background: url(./images/wave.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 30vh;
+}
+
+.headerContainer {
     display: flex;
+    gap: 2rem;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 5rem 0;
+}
+
+.headerTextContainer {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+.imgContainer {
+    position: relative;
 }
 
 /* DASHBOARD */
+
+.addTripBtn {
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    height: fit-content;
+}
 
 .dashboard {
     text-align: center;
 }
 
 .tripsContainer {
-    padding-top: 1.5rem;
+    padding: 1.5rem 0;
     display: flex;
     gap: 3rem;
     flex-wrap: wrap;
@@ -156,6 +227,7 @@ header {
 .card {
     /* credit for box shadow styling: https: //www.reddit.com/r/web_design/comments/l6o3bj/css_tip_blurring_shadow/ */
     width: 400px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -169,13 +241,13 @@ header {
     transform: scale(0.92);
 }
 
+.activitiesContainer {
+    text-align: left;
+}
+
 /* FOOTER */
 footer {
     font-size: 0.8rem;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
     text-align: center;
     padding: 0.8rem;
 }

@@ -1,8 +1,10 @@
 import './App.css';
 import firebase from './firebase';
+import axios from 'axios';
 import { getDatabase, ref, onValue, push } from 'firebase/database'
 import { useState, useEffect } from 'react';
 import formModal from './components/formModal';
+import earth from "./images/earth.svg";
 
 function App() {
 
@@ -67,14 +69,23 @@ function App() {
 
   return (
     <div className="App">
-      <header className='wrapper'>
-        <h1>Travel Sheets</h1>
-        <h2>A travel itinerary board to inspire you on your next destination.</h2>
-        <button 
-        onClick={toggleAddModal}
-        >
-          New trip
-        </button>
+      <header>
+        <div className="headerContainer wrapper">
+          <div className="headerTextContainer">
+            <h1>Travel Sheets</h1>
+            <h2>A travel itinerary board to inspire you on your next destination.</h2>
+            <h3>What are your favourite cities and most memorable things to do in those cities? Contribute to the board below ↓ </h3>            
+          </div>
+          <div className="imgContainer">
+            <img src={earth} alt="Animated picture of the earth" />
+          </div>
+          <button 
+          onClick={toggleAddModal}
+          className="addTripBtn"
+          >
+            Contribute
+          </button>
+        </div>
       </header>
 
       <main>
@@ -86,19 +97,19 @@ function App() {
             <div className="modalContent">
               <form className="addForm">
                 <label htmlFor="city">City:</label>
-                <input type="text" id="city" onChange={handleCityChange} value={city}/>
-                <label htmlFor="itinerary">Itinerary name:</label>
-                <input type="text" id="itinerary" onChange={handleItineraryChange} value={itinerary}/>
-                <label htmlFor="activities" value={activity}>Activities:</label>
+                <input type="text" id="city" onChange={handleCityChange} value={city} placeholder="e.g. Toronto" required/>
+                <label htmlFor="itinerary">List name:</label>
+                <input type="text" id="itinerary" onChange={handleItineraryChange} value={itinerary} placeholder="e.g. A foodie's dream itinerary!" required/>
+                <label htmlFor="activities" value={activity}>Top activities:</label>
                 <div className="activitiesInput">
-                  <input type="text" id="activities" onChange={handleActivitiesChange}/>
-                  <button onClick={handleAddActivities}>Add</button>
+                  <input type="text" id="activities" onChange={handleActivitiesChange} placeholder="e.g. Dinner at Gyubee Japanese Grill, ..." required/>
+                  <button onClick={handleAddActivities} className="addBtn">Add</button>
                 </div>
                 <button
                 onClick={toggleAddModal}
                 className="cancelBtn"
                 >
-                  Cancel
+                  x
                 </button>
                 <button onClick={writeTripData}>Submit</button>
               </form>
@@ -108,6 +119,7 @@ function App() {
         }
         </>
       
+        
         <section className='dashboard wrapper'>
           <h3>Latest recommendations</h3>
           <div className="tripsContainer">
@@ -117,7 +129,16 @@ function App() {
                   <div className="card" key={trip.key}>
                     <p>{trip.city}</p>
                     <p>{trip.itinerary}</p>
-                    <p>{trip.activities}</p>
+                    <div className="activitiesContainer">
+                      <p>Top activities:</p>
+                      <ul>
+                        {trip.activities?.map( activity => {
+                          return (
+                            <li>{activity}</li>
+                          )
+                        })}
+                      </ul>
+                    </div>
                   </div>
                 )
               })
