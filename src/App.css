@@ -23,6 +23,8 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     --clr-blue: #e5e6e6;
     --clr-black: #292f36;
     --clr-grey: rgba(226, 236, 222);
+    --clr-dark-grey: rgb(144, 144, 144);
+    --clr-red: rgb(240, 82, 82);
 }
 
 /* GENERAL */
@@ -63,6 +65,8 @@ html {
 body {
     font-family: var(--ff-body), sans-serif;
     background-color: var(--clr-blue);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
 /* TYPOGRAPHY & RESET DEFAULTS */
@@ -78,7 +82,10 @@ h6 {
     padding: 0;
 }
 
-p {
+p,
+ul,
+li,
+a {
     margin: 0;
     padding: 0;
 }
@@ -94,6 +101,17 @@ h3 {
     padding: 2rem 0;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+ul {
+    list-style: none;
+}
+
 /* PAGE ELEMENTS */
 
 button {
@@ -102,7 +120,7 @@ button {
     font-size: 0.7rem;
     line-height: 1;
     border-radius: 300px;
-    transition-property: background-color, border-color, color, box-shadow, filter;
+    transition-property: background-color, border-color, color, box-shadow, filter, opacity;
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 2px;
@@ -130,6 +148,10 @@ button:hover {
     right: 0;
     bottom: 0;
     position: fixed;
+}
+
+.modal {
+    z-index: 20;
 }
 
 .overlay {
@@ -170,6 +192,62 @@ button:hover {
     width: 50px;
 }
 
+.activityBtns {
+    display: flex;
+    gap: 0.2rem;
+}
+
+/* .deleteBtn {
+    background-color: var(--clr-red);
+} */
+
+/* .editBtn {
+    background-color: var(--clr-grey);
+    color: var(--clr-black);
+} */
+
+.deleteBtn,
+.editBtn {
+    background: transparent;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.deleteBtn {
+    color: var(--clr-red);
+}
+
+.editBtn {
+    color: var(--clr-dark-grey);
+}
+
+.editBtn:hover {
+    color: var(--clr-grey);
+    background-color: transparent;
+}
+
+.deleteBtn:hover {
+    color: var(--clr-red);
+    background-color: transparent;
+    opacity: 0.5;
+}
+
+.activitiesToAddList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.activityListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid var(--clr-grey);
+    border-radius: 10px;
+    gap: 0.5rem;
+}
+
 ::placeholder {
     opacity: 0.5;
     font-size: 0.9rem;
@@ -193,7 +271,7 @@ header {
     background: url(./images/wave.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     min-height: 30vh;
 }
 
@@ -238,21 +316,49 @@ header {
 .card {
     /* credit for box shadow styling: https: //www.reddit.com/r/web_design/comments/l6o3bj/css_tip_blurring_shadow/ */
     width: 400px;
-    height: 500px;
+    height: 550px;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     border-radius: 20px;
     box-shadow: 28px 28px 50px 0 rgba(5, 15, 31, 0.16), -23px -23px 45px 0 #FFFFFF;
     transition: 0.3s ease-in-out;
+    opacity: 0.90;
 }
 
 .card:hover {
     transform: scale(0.92);
+    opacity: 1;
+}
+
+.cardLabel {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: var(--clr-accent);
+    font-size: 0.8rem;
+    padding-bottom: 0.2rem;
 }
 
 .activitiesContainer {
     text-align: left;
+}
+
+.cardPhoto > img {
+    border-radius: 10px 10px 0 0;
+}
+
+.cardText {
+    padding: 1rem;
+    overflow-y: auto;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.cardText::-webkit-scrollbar {
+    display: none;
 }
 
 /* FOOTER */
@@ -260,4 +366,8 @@ footer {
     font-size: 0.8rem;
     text-align: center;
     padding: 0.8rem;
+}
+
+.githubLink:hover {
+    color: var(--clr-light-accent);
 }
