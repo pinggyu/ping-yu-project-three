@@ -1,19 +1,15 @@
 import './App.css';
 import firebase from './firebase';
 import axios from 'axios';
-import { getDatabase, ref, onValue, push } from 'firebase/database'
+import { getDatabase, ref, onValue } from 'firebase/database'
 import { useState, useEffect } from 'react';
-import formModal from './components/formModal';
+import FormModal from './components/FormModal';
 import earth from "./images/earth.svg";
 
 function App() {
 
   const [trips, setTrips] = useState([]);
   const [addModal, setModal] = useState(false);
-  const [city, setCity] = useState("");
-  const [itinerary, setItinerary] = useState("");
-  const [activities, setActivities] = useState([]);
-  const [activity, setActivity] = useState("");
 
   useEffect( () => {
     const database = getDatabase(firebase);
@@ -31,93 +27,38 @@ function App() {
     })
   }, [])
 
-
-  const writeTripData = (e) => {
-
-    const database = getDatabase(firebase);
-    const dbRef = ref(database);
-    push(dbRef, {
-      "city": city,
-      "itinerary": itinerary,
-      "activities": activities
-    })
-  }
-
-  const handleAddActivities = (e) => {
-    e.preventDefault();
-    activities.push(activity);
-    setActivity('');
-  }
-
-  const handleCityChange = (e) => {
-    setCity(e.target.value);
-  }
-
-  const handleItineraryChange = (e) => {
-    setItinerary(e.target.value);
-  }
-
-  const handleActivitiesChange  = (e) => {
-    e.preventDefault();
-    setActivity(e.target.value);
-  }
-
   const toggleAddModal = (e) => {
     e.preventDefault();
     setModal( !addModal );
   }
 
   return (
-    <div className="App">
+    <div className="App pageWrapper">
       <header>
         <div className="headerContainer wrapper">
           <div className="headerTextContainer">
             <h1>Travel Sheets</h1>
             <h2>A travel itinerary board to inspire you on your next destination.</h2>
-            <h3>What are your favourite cities and most memorable things to do in those cities? Contribute to the board below ↓ </h3>            
+            <p>What are your favourite cities and the 5 most memorable things to do in those cities? Contribute to the board below ↓ </p>    
+            <button 
+            onClick={toggleAddModal}
+            className="addTripBtn"
+            >
+              Contribute
+            </button>        
           </div>
           <div className="imgContainer">
-            <img src={earth} alt="Animated picture of the earth" />
+            <img src={earth} alt="The earth" />
           </div>
-          <button 
-          onClick={toggleAddModal}
-          className="addTripBtn"
-          >
-            Contribute
-          </button>
         </div>
       </header>
 
       <main>
-        <>
+
         {
           addModal ?
-          (<div className="modal">
-          <div className="overlay">
-            <div className="modalContent">
-              <form className="addForm">
-                <label htmlFor="city">City:</label>
-                <input type="text" id="city" onChange={handleCityChange} value={city} placeholder="e.g. Toronto" required/>
-                <label htmlFor="itinerary">List name:</label>
-                <input type="text" id="itinerary" onChange={handleItineraryChange} value={itinerary} placeholder="e.g. A foodie's dream itinerary!" required/>
-                <label htmlFor="activities" value={activity}>Top activities:</label>
-                <div className="activitiesInput">
-                  <input type="text" id="activities" onChange={handleActivitiesChange} placeholder="e.g. Dinner at Gyubee Japanese Grill, ..." required/>
-                  <button onClick={handleAddActivities} className="addBtn">Add</button>
-                </div>
-                <button
-                onClick={toggleAddModal}
-                className="cancelBtn"
-                >
-                  x
-                </button>
-                <button onClick={writeTripData}>Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>) : null
+          ( <FormModal toggleAddModal = {toggleAddModal}/>) : null
         }
-        </>
       
         
         <section className='dashboard wrapper'>
@@ -127,17 +68,22 @@ function App() {
               trips.map(trip => {
                 return (
                   <div className="card" key={trip.key}>
-                    <p>{trip.city}</p>
-                    <p>{trip.itinerary}</p>
-                    <div className="activitiesContainer">
-                      <p>Top activities:</p>
-                      <ul>
-                        {trip.activities?.map( activity => {
-                          return (
-                            <li>{activity}</li>
-                          )
-                        })}
-                      </ul>
+                    <div className="cardPhoto">
+                      
+                    </div>
+                    <div className="cardText">
+                      <p>{trip.city}</p>
+                      <p>{trip.itinerary}</p>
+                      <div className="activitiesContainer">
+                        <p>Top activities:</p>
+                        <ul>
+                          {trip.activities?.map( activity => {
+                            return (
+                              <li>{activity}</li>
+                            )
+                          })}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 )

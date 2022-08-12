@@ -27,6 +27,14 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 /* GENERAL */
 
+/* to position the footer */
+.pageWrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .wrapper {
     max-width: 1480px;
     margin: 0 auto;
@@ -57,10 +65,6 @@ body {
     background-color: var(--clr-blue);
 }
 
-section {
-    padding-top: 2.5rem;
-}
-
 /* TYPOGRAPHY & RESET DEFAULTS */
 
 h1, 
@@ -74,8 +78,20 @@ h6 {
     padding: 0;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     text-transform: uppercase;
+    padding: 1rem 0;
+}
+
+h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 2rem 0;
 }
 
 /* PAGE ELEMENTS */
@@ -184,15 +200,15 @@ header {
 .headerContainer {
     display: flex;
     gap: 2rem;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 5rem 0;
+    padding: 3rem 0;
 }
 
 .headerTextContainer {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -206,13 +222,9 @@ header {
 /* DASHBOARD */
 
 .addTripBtn {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     padding: 1.2rem;
     height: fit-content;
-}
-
-.dashboard {
-    text-align: center;
 }
 
 .tripsContainer {
@@ -220,7 +232,6 @@ header {
     display: flex;
     gap: 3rem;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
 }
 
@@ -230,7 +241,6 @@ header {
     height: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 1rem;
     border-radius: 20px;
     box-shadow: 28px 28px 50px 0 rgba(5, 15, 31, 0.16), -23px -23px 45px 0 #FFFFFF;
