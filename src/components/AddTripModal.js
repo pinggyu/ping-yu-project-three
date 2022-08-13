@@ -33,23 +33,26 @@ function AddTripModal({ toggleAddModal }) {
 
     const handleAddActivities = (e) => {
         e.preventDefault();
-        if (activities.length < 5 && checkValidInput(activity) && activity.length <= 72){
+        if (activities.length < 5 && checkValidInput(activity) && activity.length <= 40){
             setActivities(activities => [...activities, activity]);
             setActivity(''); 
         } else if (activities.length === 5){
             alert('Please limit your activities to your top 5 only.');
         } else if (!checkValidInput(activity)){
             alert('Please ensure you have not submitted an empty input.');      
-        } else if (activity.length > 72){
-            alert('Please limit each activity input to 72 characters.');          
+        } else if (activity.length > 40){
+            alert('Please limit each activity input to 40 characters.');          
         }
     }
 
     const deleteActivityValue = (e, indexToDelete) => {
         e.preventDefault();
         setActivities(activities => activities.filter((activity, i) => i !== indexToDelete));
-        console.log(activities);
     }
+
+    // const editActivityValue = (e, index) => {
+    //     e.preventDefault();
+    // }
 
     const handleCityChange = (e) => {
         setCity(e.target.value);
@@ -70,14 +73,34 @@ function AddTripModal({ toggleAddModal }) {
                 <div className="modalContent">
                 <form className="addForm">
                     <label htmlFor="city">City:</label>
-                    <input type="text" id="city" onChange={handleCityChange} value={city} placeholder="e.g. Toronto" required/>
+                    <input 
+                        type="text" 
+                        id="city" 
+                        onChange={handleCityChange} 
+                        value={city} 
+                        placeholder="e.g. Toronto" 
+                        required
+                    />
 
                     <label htmlFor="itinerary">List name:</label>
-                    <input type="text" id="itinerary" onChange={handleItineraryChange} value={itinerary} placeholder="e.g. A foodie's dream itinerary!" required/>
+                    <input 
+                        type="text" 
+                        id="itinerary" 
+                        onChange={handleItineraryChange} 
+                        value={itinerary} 
+                        placeholder="e.g. A foodie's dream itinerary!" 
+                        required
+                    />
                     
                     <label htmlFor="activities">Top activities:</label>
                     <div className="activitiesInput">
-                    <input type="text" id="activities" onChange={handleActivityChange} value={activity} placeholder="e.g. Dinner at Gyubee Japanese Grill, ..."/>
+                    <input 
+                        type="text" 
+                        id="activities" 
+                        onChange={handleActivityChange} 
+                        value={activity} 
+                        placeholder="e.g. Dinner at Gyubee Japanese Grill, ..."
+                    />
                     <button onClick={handleAddActivities} className="addBtn"> Add </button>
                     </div>
                     <div className="activitiesPreview">
@@ -87,7 +110,7 @@ function AddTripModal({ toggleAddModal }) {
                                 <li className="activityListItem" key={index}>
                                     <p>{index+1}. {activity}</p>
                                     <div className="activityBtns">
-                                        <button className="editBtn"><FontAwesomeIcon icon={ faPenToSquare } /></button>
+                                        {/* <button className="editBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faPenToSquare } /></button> */}
                                         <button className="deleteBtn" onClick={(e)=> deleteActivityValue(e, index)}><FontAwesomeIcon icon={faCircleMinus} /></button>                                        
                                     </div>
                                 </li>

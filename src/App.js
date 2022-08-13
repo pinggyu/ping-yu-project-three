@@ -16,24 +16,27 @@ function App() {
   const [trips, setTrips] = useState([]);
   const [addModal, setModal] = useState(false);
 
-  // setting up connection to firebase and updating collection of trips, call onValue() only once when the component mounts (since the connection is made and persists) by adding an empty dependency array to useEffect()
+  // setting up connection to firebase & updating trips collection
   useEffect( () => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
-    // firebase listener to track db changes, returns a function that (when called) removes the listener
-    const unsubscribe = onValue(dbRef,(response) => {
+    // firebase listener to track db changes
+    // returns a function that (when called) removes the listener
+    const unsubscribe = onValue(dbRef, (snapshot) => {
       const tripsCollection = [];
-      const tripsData = response.val();
+      const tripsData = snapshot.val();
 
-      for (let key in tripsData){
-        tripsCollection.push({
-          key: key, 
-          city: tripsData[key].city,
-          itinerary: tripsData[key].itinerary, 
-          activities: tripsData[key].activities});
+      if (tripsData) {
+        for (let key in tripsData){
+          tripsCollection.push({
+            key: key, 
+            city: tripsData[key].city,
+            itinerary: tripsData[key].itinerary, 
+            activities: tripsData[key].activities});
+        }        
       }
-
+      
       setTrips(tripsCollection);
     })
 
@@ -41,6 +44,7 @@ function App() {
     return () => {
       unsubscribe();
     }
+    // empty dependency array to call onValue() only when component mounts, so the connection to db is made and can persist until component dismount
   }, [])
 
   // add new trip form modal toggle
