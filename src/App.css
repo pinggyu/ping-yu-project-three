@@ -25,6 +25,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     --clr-grey: rgba(226, 236, 222);
     --clr-dark-grey: rgb(144, 144, 144);
     --clr-red: rgb(240, 82, 82);
+    --clr-green: rgb(80, 183, 80);
 }
 
 /* GENERAL */
@@ -207,7 +208,8 @@ button:hover {
 } */
 
 .deleteBtn,
-.editBtn {
+.editBtn,
+.editActivityBtn {
     background: transparent;
     font-size: 1.5rem;
     padding: 0;
@@ -221,7 +223,8 @@ button:hover {
     color: var(--clr-dark-grey);
 }
 
-.editBtn:hover {
+.editBtn:hover,
+.editActivityBtn:hover {
     color: var(--clr-grey);
     background-color: transparent;
 }
@@ -230,6 +233,10 @@ button:hover {
     color: var(--clr-red);
     background-color: transparent;
     opacity: 0.5;
+}
+
+.editActivityBtn {
+    color: var(--clr-green);
 }
 
 .activitiesToAddList {
@@ -308,7 +315,7 @@ header {
 .tripsContainer {
     padding: 1.5rem 0;
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     flex-wrap: wrap;
     justify-content: center;
 }

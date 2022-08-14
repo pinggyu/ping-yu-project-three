@@ -1,5 +1,5 @@
 // helper functions
-import checkValidInput from "../utils/checkValidInput";
+import checkValidActivity from "../utils/checkValidActivity";
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faCircleMinus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +10,10 @@ import { getDatabase, ref, push } from 'firebase/database'
 import { useState } from 'react';
 
 function AddTripModal({ toggleAddModal }) {
+
+    // 'activity' state tracks the current activity being entered
+    // 'activities' state tracks the current entire array of activities to be added
+    // 'editedActivity' state tracks the current activity being edited
 
     const [city, setCity] = useState("");
     const [itinerary, setItinerary] = useState("");
@@ -35,15 +39,11 @@ function AddTripModal({ toggleAddModal }) {
 
     const handleAddActivities = (e) => {
         e.preventDefault();
-        if (activities.length < 5 && checkValidInput(activity) && activity.length <= 40){
+        if (activities.length < 5 && checkValidActivity(activity)){
             setActivities(activities => [...activities, activity]);
             setActivity(''); 
         } else if (activities.length === 5){
             alert('Please limit your activities to your top 5 only.');
-        } else if (!checkValidInput(activity)){
-            alert('Please ensure you have not submitted an empty input.');      
-        } else if (activity.length > 40){
-            alert('Please limit each activity input to 40 characters.');          
         }
     }
 
@@ -54,15 +54,19 @@ function AddTripModal({ toggleAddModal }) {
 
     const editActivityValue = (e, index) => {
         e.preventDefault();
-        const tempArr = [...activities]
-        tempArr[index] = editedActivity;
-        setActivities(tempArr);
-        setEditIndex("");
+        if (checkValidActivity(editedActivity)) {
+            const tempArr = [...activities]
+            tempArr[index] = editedActivity;
+            setActivities(tempArr);
+            setEditIndex("");   
+            setEditedActivity("");         
+        }
     }
 
     const handleEditIndex = (e, index) => {
         e.preventDefault();
         setEditIndex(index);
+        setEditedActivity(activities[index]);
     }
 
     const handleCityChange = (e) => {
@@ -137,9 +141,10 @@ function AddTripModal({ toggleAddModal }) {
                                         id="activity" 
                                         onChange={handleActivityEditChange} 
                                         placeholder={activity}
+                                        value={editedActivity}
                                     />                                   
                                     <div className="activityBtns">
-                                        <button className="editBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faSquareCheck } /></button>                                  
+                                        <button className="editActivityBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faSquareCheck } /></button>                                  
                                     </div>
                                 </li>)                                    
                             )
