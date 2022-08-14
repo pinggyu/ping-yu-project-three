@@ -198,14 +198,22 @@ button:hover {
     gap: 0.2rem;
 }
 
-/* .deleteBtn {
-    background-color: var(--clr-red);
-} */
+.newTripInput {
+    width: 400px;
+    padding: 0.6rem;
+    margin: 0 0.5rem 0.5rem 0;
+    border-style: none;
+    border-bottom: 2px solid var(--clr-accent);
+}
 
-/* .editBtn {
-    background-color: var(--clr-grey);
-    color: var(--clr-black);
-} */
+@media screen and (max-width: 600px) {
+    .newTripInput {
+        width: 100%;
+    }
+    .modalContent {
+        width: 90%;
+    }
+}
 
 .deleteBtn,
 .editBtn,
@@ -264,14 +272,6 @@ label {
     color: var(--clr-accent);
 }
 
-input {
-    width: 400px;
-    padding: 0.6rem;
-    margin: 0 0.5rem 0.5rem 0;
-    border-style: none;
-    border-bottom: 2px solid var(--clr-accent);
-}
-
 /* HEADER */
 
 header {
@@ -304,6 +304,12 @@ header {
     position: relative;
 }
 
+@media screen and (max-width: 930px) {
+    .headerImg {
+        display: none;
+    }
+}
+
 /* DASHBOARD */
 
 .addTripBtn {
@@ -329,11 +335,11 @@ header {
     border-radius: 20px;
     box-shadow: 28px 28px 50px 0 rgba(5, 15, 31, 0.16), -23px -23px 45px 0 #FFFFFF;
     transition: 0.3s ease-in-out;
-    opacity: 0.90;
+    opacity: 0.85;
 }
 
 .card:hover {
-    transform: scale(0.92);
+    transform: scale(0.95);
     opacity: 1;
 }
 
@@ -375,8 +381,11 @@ footer {
     font-size: 0.8rem;
     text-align: center;
     padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.githubLink:hover {
+.footerLink:hover {
     color: var(--clr-light-accent);
 }

@@ -10,6 +10,9 @@ import Header from './components/Header';
 import AddTripModal from './components/AddTripModal';
 import Dashboard from './components/Dashboard';
 import Footer from './components/Footer';
+// animations
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
 
@@ -52,6 +55,8 @@ function App() {
     e.preventDefault();
     setModal( !addModal );
   }
+
+  AOS.init();
 
   return (
     <div className="App pageWrapper">

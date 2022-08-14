@@ -92,6 +92,7 @@ function AddTripModal({ toggleAddModal }) {
                 <form className="addForm">
                     <label htmlFor="city">City:</label>
                     <input 
+                        className="newTripInput"
                         type="text" 
                         id="city" 
                         onChange={handleCityChange} 
@@ -102,6 +103,7 @@ function AddTripModal({ toggleAddModal }) {
 
                     <label htmlFor="itinerary">List name:</label>
                     <input 
+                        className="newTripInput"
                         type="text" 
                         id="itinerary" 
                         onChange={handleItineraryChange} 
@@ -113,6 +115,7 @@ function AddTripModal({ toggleAddModal }) {
                     <label htmlFor="activities">Top activities:</label>
                     <div className="activitiesInput">
                     <input 
+                        className="newTripInput"
                         type="text" 
                         id="activities" 
                         onChange={handleActivityChange} 
@@ -137,6 +140,7 @@ function AddTripModal({ toggleAddModal }) {
                                 (<li className="activityListItem" key={index}>
                                     <label htmlFor="activity"></label>
                                     <input 
+                                        className="newTripInput"
                                         type="text" 
                                         id="activity" 
                                         onChange={handleActivityEditChange} 

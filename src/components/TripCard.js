@@ -31,7 +31,7 @@ function TripCard({ trip }) {
 
 
     return (
-        <div className="card">
+        <div className="card" data-aos='fade-up' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
         <div className="cardPhoto">
             {
                 !isEmpty(cityPhoto) ? <img src={cityPhoto.urls.small} alt={cityPhoto.alt_description} /> : null
@@ -51,7 +51,7 @@ function TripCard({ trip }) {
             <ul>
                 {trip.activities?.map( (activity, index) => {
                 return (
-                    <li key={index}>- {activity}</li>
+                    <li className="activitiesListItem" key={index}>- {activity}</li>
                 )
                 })}
             </ul>
