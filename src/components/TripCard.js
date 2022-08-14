@@ -12,10 +12,10 @@ function TripCard({ trip }) {
     //         method: 'GET',
     //         dataResponse: 'json',
     //         params: {
-    //         client_id: apiKey,
-    //         orientation: 'landscape',
-    //         query: trip.city
-    //         content_filter: 'high'
+    //             client_id: apiKey,
+    //             orientation: 'landscape',
+    //             query: trip.city,
+    //             content_filter: 'high'
     //         }
     //     }).then(response => {
     //         const result = response.data.results;
@@ -27,9 +27,9 @@ function TripCard({ trip }) {
 
     return (
         <div className="card">
-        <div className="cardPhoto">
-            <img src="https://images.unsplash.com/photo-1470181942237-78ce33fec141?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDYyMjV8MHwxfHNlYXJjaHwxfHxNb250cmVhbHxlbnwwfDB8fHwxNjYwMjgxNTU2&ixlib=rb-1.2.1&q=80&w=400" alt="landscape photography of skyscrapers" />
-        </div>
+        {/* <div className="cardPhoto">
+            <img src={cityPhoto.urls.small} alt={cityPhoto.alt_description} />
+        </div> */}
         <div className="cardText">
             <div className="cardSection">
                 <p className='cardLabel'>City</p>

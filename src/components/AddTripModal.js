@@ -2,7 +2,7 @@
 import checkValidInput from "../utils/checkValidInput";
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faCircleMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faCircleMinus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 // db
 import firebase from '../firebase';
 import { getDatabase, ref, push } from 'firebase/database'
@@ -15,6 +15,8 @@ function AddTripModal({ toggleAddModal }) {
     const [itinerary, setItinerary] = useState("");
     const [activities, setActivities] = useState([]);
     const [activity, setActivity] = useState("");
+    const [editedActivity, setEditedActivity] = useState("");
+    const [editIndex, setEditIndex] = useState("");
 
     const writeTripData = (e) => {
         if (activities.length === 5) {
@@ -50,9 +52,18 @@ function AddTripModal({ toggleAddModal }) {
         setActivities(activities => activities.filter((activity, i) => i !== indexToDelete));
     }
 
-    // const editActivityValue = (e, index) => {
-    //     e.preventDefault();
-    // }
+    const editActivityValue = (e, index) => {
+        e.preventDefault();
+        const tempArr = [...activities]
+        tempArr[index] = editedActivity;
+        setActivities(tempArr);
+        setEditIndex("");
+    }
+
+    const handleEditIndex = (e, index) => {
+        e.preventDefault();
+        setEditIndex(index);
+    }
 
     const handleCityChange = (e) => {
         setCity(e.target.value);
@@ -63,8 +74,11 @@ function AddTripModal({ toggleAddModal }) {
     }
 
     const handleActivityChange  = (e) => {
-        e.preventDefault();
         setActivity(e.target.value);
+    }
+
+    const handleActivityEditChange = (e) => {
+        setEditedActivity(e.target.value);        
     }
 
     return (
@@ -107,13 +121,27 @@ function AddTripModal({ toggleAddModal }) {
                         <ul className='activitiesToAddList'>
                             {activities.map( (activity, index) => { 
                             return (
-                                <li className="activityListItem" key={index}>
+                                (editIndex !== index) ?
+                                (<li className="activityListItem" key={index}>
                                     <p>{index+1}. {activity}</p>
                                     <div className="activityBtns">
-                                        {/* <button className="editBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faPenToSquare } /></button> */}
+                                        <button className="editBtn"onClick={(e)=> handleEditIndex(e, index)}><FontAwesomeIcon icon={ faPenToSquare } /></button>
                                         <button className="deleteBtn" onClick={(e)=> deleteActivityValue(e, index)}><FontAwesomeIcon icon={faCircleMinus} /></button>                                        
                                     </div>
-                                </li>
+                                </li>)
+                                :
+                                (<li className="activityListItem" key={index}>
+                                    <label htmlFor="activity"></label>
+                                    <input 
+                                        type="text" 
+                                        id="activity" 
+                                        onChange={handleActivityEditChange} 
+                                        placeholder={activity}
+                                    />                                   
+                                    <div className="activityBtns">
+                                        <button className="editBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faSquareCheck } /></button>                                  
+                                    </div>
+                                </li>)                                    
                             )
                             })}
                         </ul>
