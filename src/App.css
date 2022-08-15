@@ -170,7 +170,7 @@ button:hover {
     height: fit-content;
     background-color: white;
     padding: 1rem;
-    border-radius: 50px;
+    border-radius: 30px;
 }
 
 /* ADD FORM */
@@ -191,6 +191,8 @@ button:hover {
     top: -0.5rem;
     right: -0.5rem;
     width: 50px;
+    height: 50px;
+    font-size: 0.9rem;
 }
 
 .activityBtns {
@@ -219,7 +221,7 @@ button:hover {
 .editBtn,
 .editActivityBtn {
     background: transparent;
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 0;
 }
 
@@ -257,7 +259,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
     border: 1px solid var(--clr-grey);
     border-radius: 10px;
     gap: 0.5rem;
@@ -334,14 +336,14 @@ header {
     flex-direction: column;
     border-radius: 20px;
     box-shadow: 28px 28px 50px 0 rgba(5, 15, 31, 0.16), -23px -23px 45px 0 #FFFFFF;
-    transition: 0.3s ease-in-out;
-    opacity: 0.85;
+    /* transition: 0.3s ease-in-out;
+    opacity: 0.85; */
 }
 
-.card:hover {
+/* .card:hover {
     transform: scale(0.95);
     opacity: 1;
-}
+} */
 
 .cardLabel {
     text-transform: uppercase;
@@ -384,6 +386,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-top: 1.5rem;
 }
 
 .footerLink:hover {

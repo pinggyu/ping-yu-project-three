@@ -2,12 +2,14 @@
 import checkValidActivity from "../utils/checkValidActivity";
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faCircleMinus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faCircleMinus, faSquareCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 // db
 import firebase from '../firebase';
 import { getDatabase, ref, push } from 'firebase/database'
 // react
 import { useState } from 'react';
+// axios
+import axios from 'axios';
 
 function AddTripModal({ toggleAddModal }) {
 
@@ -22,26 +24,60 @@ function AddTripModal({ toggleAddModal }) {
     const [editedActivity, setEditedActivity] = useState("");
     const [editIndex, setEditIndex] = useState("");
 
-    const writeTripData = (e) => {
-        if (activities.length === 5) {
+    // profanity filter API
+    // const hasProfanity = (string) => {
+    //     axios({
+    //     url: 'https://www.purgomalum.com/service/containsprofanity?text=' + string,
+    //     method: 'GET',
+    //     dataResponse: 'json',
+    //     }).then((response) => {
+    //         // console.log(response)
+    //         return response;
+    //     }).catch(function (error) {
+    //         console.log('Profanity API Check Failed');
+    //         return;
+    //     });
+    // }
+
+    // profanity filter API
+    const hasProfanity = async (string) => {
+        const inputHasProfanity = await axios.get("https://www.purgomalum.com/service/containsprofanity?text=" + string)
+        .then((response) => response.data)
+        .catch((error) => console.log('Profanity API Check Failed', error))
+        return inputHasProfanity;
+    }
+
+    const writeTripData = async (e) => {
+        e.preventDefault();
+        const cityProfanity = await hasProfanity(city);
+        const itineraryProfanity = await hasProfanity(itinerary);
+
+        if (activities.length > 0 && !cityProfanity && !itineraryProfanity) {
             const database = getDatabase(firebase);
             const dbRef = ref(database);
             push(dbRef, {
-            "city": city,
-            "itinerary": itinerary,
-            "activities": activities
-            })        
-        } else {
-            e.preventDefault();
-            alert('Please add your 5 top activities.');
+                "city": city,
+                "itinerary": itinerary,
+                "activities": activities
+            }) 
+            toggleAddModal(e);
+        } else if (cityProfanity || itineraryProfanity) {
+            alert('Avoid using profanity.');
+        } else if (activities.length === 0) {
+            alert('Please add at least one activity!');
         }
     }
 
-    const handleAddActivities = (e) => {
+    const handleAddActivities = async (e) => {
         e.preventDefault();
-        if (activities.length < 5 && checkValidActivity(activity)){
+
+        const profanity = await hasProfanity(activity);
+
+        if (activities.length < 5 && checkValidActivity(activity) && !profanity){
             setActivities(activities => [...activities, activity]);
             setActivity(''); 
+        } else if (profanity) {
+            alert('Avoid using profanity.');
         } else if (activities.length === 5){
             alert('Please limit your activities to your top 5 only.');
         }
@@ -155,7 +191,7 @@ function AddTripModal({ toggleAddModal }) {
                             })}
                         </ul>
                     </div>
-                    <button onClick={(e) => toggleAddModal(e)} className="cancelBtn"> x </button>
+                    <button onClick={(e) => toggleAddModal(e)} className="cancelBtn"><FontAwesomeIcon icon={ faXmark } /></button>
                     <button onClick={writeTripData}> Submit </button>
                 </form>
                 </div>
