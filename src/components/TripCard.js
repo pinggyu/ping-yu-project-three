@@ -29,9 +29,21 @@ function TripCard({ trip }) {
             } else {
                 setCityPhoto({});
             }
+        }).catch(error => {
+            if (error.response) {
+            // request made, server responded
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            } else if (error.request) {
+            // request made, no response
+            console.log(error.request);
+            } else {
+            // request didn't go through
+            console.log('Error', error.message);
+            }            
         })
     }, [])
-
 
     return (
         <div className="card" data-aos='fade-up' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">

@@ -25,21 +25,6 @@ function AddTripModal({ toggleAddModal }) {
     const [editIndex, setEditIndex] = useState("");
 
     // profanity filter API
-    // const hasProfanity = (string) => {
-    //     axios({
-    //     url: 'https://www.purgomalum.com/service/containsprofanity?text=' + string,
-    //     method: 'GET',
-    //     dataResponse: 'json',
-    //     }).then((response) => {
-    //         // console.log(response)
-    //         return response;
-    //     }).catch(function (error) {
-    //         console.log('Profanity API Check Failed');
-    //         return;
-    //     });
-    // }
-
-    // profanity filter API
     const hasProfanity = async (string) => {
         const inputHasProfanity = await axios.get("https://www.purgomalum.com/service/containsprofanity?text=" + string)
         .then((response) => response.data)
