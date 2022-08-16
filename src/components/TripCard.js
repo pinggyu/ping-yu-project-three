@@ -5,12 +5,10 @@ import objectIsEmpty from '../utils/objectIsEmpty';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faCircleMinus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 
-function TripCard({ trip }) {
+function TripCard({ trip, handleRemoveTrip }) {
 
     const [cityPhoto, setCityPhoto] = useState({});
     const apiKey = "w67FDoRaQhOOmrxqoRXzmm-BO60eCrBuYsc59kTGMeo";
-
-    console.log (trip);
 
     useEffect ( () => {
         axios({
@@ -77,8 +75,13 @@ function TripCard({ trip }) {
                     trip.demo ? <p className='demoTag'>Demo</p> : (
                         <div className="editCardOptions">
                             {/* <button className="editSubmitBtn"><FontAwesomeIcon icon={ faSquareCheck } /></button>      */}
-                            <button className="editBtn"><FontAwesomeIcon icon={ faPenToSquare } /></button>
-                            <button className="deleteBtn"><FontAwesomeIcon icon={faCircleMinus} /></button>   
+                            {/* <button className="editBtn"><FontAwesomeIcon icon={ faPenToSquare } /></button> */}
+                            <button 
+                            className="deleteBtn"
+                            onClick={() => handleRemoveTrip(trip.key)}
+                            >
+                                <FontAwesomeIcon icon={faCircleMinus} />
+                            </button>   
                         </div>  
                     )
                 }

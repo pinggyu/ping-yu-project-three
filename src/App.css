@@ -109,6 +109,10 @@ a {
     font-weight: 500;
 }
 
+p {
+    transition: 0.3s ease-in-out;
+}
+
 ul {
     list-style: none;
 }
@@ -235,7 +239,7 @@ button:hover {
 
 .editBtn:hover,
 .editSubmitBtn:hover {
-    color: var(--clr-grey);
+    opacity: 0.5;
     background-color: transparent;
 }
 
@@ -435,6 +439,11 @@ footer {
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 1.5rem;
+}
+
+.copyright{
+    padding: 1.5rem 0 1rem 0;
+    border-top: 1px solid var(--clr-dark-grey);
 }
 
 .footerLink:hover {
