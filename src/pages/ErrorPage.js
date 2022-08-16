@@ -14,7 +14,6 @@ function ErrorPage() {
                 <button>Back</button>
             </Link> 
         </div>
-        <Footer />
     </div>
   )
 }

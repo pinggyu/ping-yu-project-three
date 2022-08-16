@@ -35,7 +35,9 @@ function Dashboard() {
                 key: key, 
                 city: tripsData[key].city,
                 itinerary: tripsData[key].itinerary, 
-                activities: tripsData[key].activities});
+                activities: tripsData[key].activities,
+                demo: tripsData[key].demo
+                });
             }        
         }
         

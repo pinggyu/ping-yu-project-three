@@ -43,7 +43,8 @@ function AddTripModal({ toggleAddModal }) {
             push(dbRef, {
                 "city": city,
                 "itinerary": itinerary,
-                "activities": activities
+                "activities": activities,
+                "demo": false
             }) 
             toggleAddModal(e);
         } else if (cityProfanity || itineraryProfanity) {
@@ -169,7 +170,7 @@ function AddTripModal({ toggleAddModal }) {
                                         value={editedActivity}
                                     />                                   
                                     <div className="activityBtns">
-                                        <button className="editActivityBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faSquareCheck } /></button>                                  
+                                        <button className="editSubmitBtn"onClick={(e)=> editActivityValue(e, index)}><FontAwesomeIcon icon={ faSquareCheck } /></button>                                  
                                     </div>
                                 </li>)                                    
                             )

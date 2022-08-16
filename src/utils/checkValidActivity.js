@@ -1,3 +1,4 @@
+// This helper function checks if an activity is within 60 characters and is not empty before being added to the DB
 const checkValidActivity = (str) => {
     // invalid if string only contains spaces or is empty
     if (str === "" || !(str.replace(/\s/g, '').length) || str.length > 60) {

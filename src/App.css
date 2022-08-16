@@ -219,7 +219,7 @@ button:hover {
 
 .deleteBtn,
 .editBtn,
-.editActivityBtn {
+.editSubmitBtn {
     background: transparent;
     font-size: 1rem;
     padding: 0;
@@ -234,7 +234,7 @@ button:hover {
 }
 
 .editBtn:hover,
-.editActivityBtn:hover {
+.editSubmitBtn:hover {
     color: var(--clr-grey);
     background-color: transparent;
 }
@@ -245,7 +245,7 @@ button:hover {
     opacity: 0.5;
 }
 
-.editActivityBtn {
+.editSubmitBtn {
     color: var(--clr-green);
 }
 
@@ -340,6 +340,7 @@ header {
 
 .card {
     /* credit for box shadow styling: https: //www.reddit.com/r/web_design/comments/l6o3bj/css_tip_blurring_shadow/ */
+    position: relative;
     width: 400px;
     height: 550px;
     display: flex;
@@ -355,6 +356,36 @@ header {
         width: 330px;
         height: 500px;
     }
+}
+
+.demoTag,
+.editCardOptions {
+    position: absolute;
+    right: 1rem;
+}
+
+.demoTag {
+    font-size: 0.7rem;
+    line-height: 1;
+    border-radius: 300px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    padding: 0.8rem 0.7rem 0.9rem;
+    color: var(--clr-accent);
+    border: 2px solid var(--clr-accent);
+    height: 2.4rem;
+}
+
+.editCardOptions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.editCardOptions {
+    display: flex;
+    gap: 0.5rem;
 }
 
 /* .card:hover {

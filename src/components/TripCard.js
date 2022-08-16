@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import objectIsEmpty from '../utils/objectIsEmpty';
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faCircleMinus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 
 function TripCard({ trip }) {
 
     const [cityPhoto, setCityPhoto] = useState({});
     const apiKey = "w67FDoRaQhOOmrxqoRXzmm-BO60eCrBuYsc59kTGMeo";
 
-    // checks if object is empty
-    const isEmpty = (obj) => {
-        return Object.keys(obj).length === 0;
-    }
+    console.log (trip);
 
     useEffect ( () => {
         axios({
@@ -47,32 +48,43 @@ function TripCard({ trip }) {
 
     return (
         <div className="card" data-aos='fade-up' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
-        <div className="cardPhoto">
-            {
-                !isEmpty(cityPhoto) ? <img src={cityPhoto.urls.small} alt={cityPhoto.alt_description} /> : <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDYyMjV8MHwxfHNlYXJjaHw3fHx0cmF2ZWxsaW5nfGVufDF8MHx8fDE2NjA1MzY3MTg&ixlib=rb-1.2.1&q=80&w=400" alt="man sitting on gang chair with feet on luggage looking at airplane" />
-            }
+            <div className="cardPhoto">
+                {
+                    !objectIsEmpty(cityPhoto) ? <img src={cityPhoto.urls.small} alt={cityPhoto.alt_description} /> : <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDYyMjV8MHwxfHNlYXJjaHw3fHx0cmF2ZWxsaW5nfGVufDF8MHx8fDE2NjA1MzY3MTg&ixlib=rb-1.2.1&q=80&w=400" alt="man sitting on gang chair with feet on luggage looking at airplane" />
+                }
+            </div>
+            <div className="cardText">
+                <div className="cardSection">
+                    <p className='cardLabel'>City</p>
+                    <p>{trip.city}</p> 
+                </div>
+                <div className="cardSection">
+                    <p className='cardLabel'>List Name</p>
+                    <p>{trip.itinerary}</p>
+                </div>
+                <div className="activitiesContainer cardSection">
+                    <p className='cardLabel'>Top activities</p>
+                    <ul>
+                        {trip.activities?.map( (activity, index) => {
+                        return (
+                            <li className="activitiesListItem" key={index}>- {activity}</li>
+                        )
+                        })}
+                    </ul>
+                </div>
+            
+                {
+                    trip.demo ? <p className='demoTag'>Demo</p> : (
+                        <div className="editCardOptions">
+                            {/* <button className="editSubmitBtn"><FontAwesomeIcon icon={ faSquareCheck } /></button>      */}
+                            <button className="editBtn"><FontAwesomeIcon icon={ faPenToSquare } /></button>
+                            <button className="deleteBtn"><FontAwesomeIcon icon={faCircleMinus} /></button>   
+                        </div>  
+                    )
+                }
+     
+            </div>
         </div>
-        <div className="cardText">
-            <div className="cardSection">
-                <p className='cardLabel'>City</p>
-                <p>{trip.city}</p> 
-            </div>
-            <div className="cardSection">
-                <p className='cardLabel'>List Name</p>
-            <p>{trip.itinerary}</p>
-            </div>
-            <div className="activitiesContainer cardSection">
-            <p className='cardLabel'>Top activities</p>
-            <ul>
-                {trip.activities?.map( (activity, index) => {
-                return (
-                    <li className="activitiesListItem" key={index}>- {activity}</li>
-                )
-                })}
-            </ul>
-            </div>
-        </div>
-    </div>
     )
 }
 
