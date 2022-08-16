@@ -4,11 +4,12 @@ import './App.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 // router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 // pages
 import Main from './pages/Main';
 import TripDetails from './pages/TripDetails';
 import Login from './pages/Login';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
       <Route path='/' element= { <Main /> } ></Route>
       <Route path='/login' element= { <Login /> } ></Route>
       <Route path='/trip/:tripId' element= {<TripDetails />} ></Route>
+      {/* Any other route redirects to login */}
+      <Route path="*" element = { <ErrorPage /> } ></Route>
     </Routes>
 
   );

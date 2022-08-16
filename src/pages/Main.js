@@ -1,13 +1,13 @@
 import React from 'react';
 // components
-import Header from '../components/Header';
+import DashboardHeader from '../components/DashboardHeader';
 import Dashboard from '../components/Dashboard';
 import Footer from '../components/Footer';
 
 function Main() {
   return (
     <>
-        <Header /> 
+        <DashboardHeader /> 
         <main>
         <div className="pageWrapper">
             <Dashboard/>

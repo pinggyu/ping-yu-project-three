@@ -409,3 +409,13 @@ footer {
 .footerLink:hover {
     color: var(--clr-light-accent);
 }
+
+/* ERROR PAGE */
+.errorPageText {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}

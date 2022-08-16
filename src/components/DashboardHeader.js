@@ -1,6 +1,6 @@
 import earth from "../images/earth.svg";
 
-function Header() {
+function DashboardHeader() {
   return (
       <header>
         <div className="headerContainer wrapper">
@@ -17,4 +17,4 @@ function Header() {
   )
 }
 
-export default Header;
+export default DashboardHeader;
