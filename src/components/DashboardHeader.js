@@ -6,6 +6,7 @@ function DashboardHeader() {
 
   // get current user logged in
   const { user, logOut } = useUserAuth();
+  console.log(user)
   // error state
   const [error, setError] = useState(''); 
 
@@ -22,7 +23,7 @@ function DashboardHeader() {
       <header>
         <div className="headerContainer wrapper">
           <div className="headerTextContainer">
-            <p>You are signed in as { user ? user.email : 'demo user'}</p>
+            <p>You are signed in as { user.email ? user.email : 'demo user'}</p>
             <button onClick={handleLogout}>Log Out</button>
             <h1>Travel Sheets</h1>
             <h2>A travel itinerary board to inspire you on your next destination.</h2>

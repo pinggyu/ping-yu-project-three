@@ -10,7 +10,7 @@ function SignUp() {
     const [error, setError] = useState(''); 
 
     // getting the sign up function by deconstructing the context object useUserAuth()
-    const { signUp } = useUserAuth();
+    const { signUp, logInAsDemo } = useUserAuth();
 
     // redirect user to another page
     const navigate = useNavigate();
@@ -37,6 +37,22 @@ function SignUp() {
             setError(err.message);
             alert(err);
         }
+    }
+
+    const handleDemoSubmit = async (e) => {
+      e.preventDefault();
+
+      setError('');
+
+      try {
+          await logInAsDemo();
+          // redirect user to the login page
+          navigate('/');
+
+      } catch (err){
+          setError(err.message);
+          alert(err);
+      }
     }
 
     return (
@@ -74,9 +90,7 @@ function SignUp() {
             <Link to={`/login`}>
                 <button>Log In</button>
             </Link> 
-            <Link to={`/`}>
-                <button>View Demo</button>
-            </Link> 
+                <button onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
         </main>
         <Footer />
     </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
+import { signInAnonymously } from 'firebase/auth';
 
 function Login() {
 
@@ -10,7 +11,7 @@ function Login() {
     const [error, setError] = useState(''); 
 
     // getting the sign up function by deconstructing the context object useUserAuth()
-    const { logIn } = useUserAuth();
+    const { logIn, logInAsDemo } = useUserAuth();
 
     // redirect user to another page
     const navigate = useNavigate();
@@ -38,6 +39,23 @@ function Login() {
             alert(err);
         }
     }
+
+    const handleDemoSubmit = async (e) => {
+      e.preventDefault();
+
+      setError('');
+
+      try {
+          await logInAsDemo();
+          // redirect user to the login page
+          navigate('/');
+
+      } catch (err){
+          setError(err.message);
+          alert(err);
+      }
+    }
+  
 
   return (
     <div className="pageWrapper">
@@ -72,12 +90,10 @@ function Login() {
             </section>
 
           <p>Don't have an account yet?</p>
-          <Link to={`/signup`}>
+          <Link to={`/signup`} >
             <button>Sign Up</button>
           </Link> 
-          <Link to={`/`}>
-            <button>View Demo</button>
-          </Link> 
+            <button onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
         </main>
         <Footer />
     </div>

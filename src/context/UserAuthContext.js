@@ -20,6 +20,10 @@ export function UserAuthContextProvider({ children }) {
         return signOut(auth);
     }
 
+    function logInAsDemo() {
+        return signInAnonymously(auth);
+    }
+
     useEffect(() => {
        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -32,7 +36,7 @@ export function UserAuthContextProvider({ children }) {
 
     }, []);
 
-    return (<userAuthContext.Provider value={ { user, logIn, signUp, logOut } }> {children} </userAuthContext.Provider>);
+    return (<userAuthContext.Provider value={ { user, logIn, signUp, logOut, logInAsDemo } }> {children} </userAuthContext.Provider>);
 }
 
 export function useUserAuth() {

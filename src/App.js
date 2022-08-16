@@ -34,7 +34,7 @@ function App() {
         } />
 
         {/* Accessed via dashboard - TO BE IMPLEMENTED */}
-        {/* <Route path='/trip/:tripId' element= {<TripDetails />} /> */}
+        {/* <Route path='/trip/:tripId' element= {<ProtectedRoute> <TripDetails /> </ProtectedRoute> } /> */}
 
         {/* Any other route redirects to error */}
         <Route path="*" element = { <ErrorPage /> } ></Route>
