@@ -43,7 +43,7 @@ function TripCard({ trip }) {
             console.log('Error', error.message);
             }            
         })
-    }, [])
+    }, [trip.city])
 
     return (
         <div className="card" data-aos='fade-up' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
