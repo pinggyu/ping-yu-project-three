@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
+import { useState } from 'react';
 import { useUserAuth } from '../context/UserAuthContext';
 
-function Login() {
+function SignUp() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); 
 
     // getting the sign up function by deconstructing the context object useUserAuth()
-    const { logIn } = useUserAuth();
+    const { signUp } = useUserAuth();
 
     // redirect user to another page
     const navigate = useNavigate();
@@ -29,9 +29,9 @@ function Login() {
         setError('');
 
         try {
-            await logIn(email, password);
+            await signUp(email, password);
             // redirect user to the login page following a successful sign up
-            navigate('/');
+            navigate('/login');
 
         } catch (err){
             setError(err.message);
@@ -39,14 +39,14 @@ function Login() {
         }
     }
 
-  return (
+    return (
     <div className="pageWrapper">
         <header>
-          <h1>Login</h1>
+            <h1>Sign Up</h1>
         </header>
         <main>
-            <section className="loginBody">
-                <form className="loginForm" onSubmit={handleSubmit}>
+            <section className="signUpBody">
+                <form className="signUpForm" onSubmit={handleSubmit}>
                     <label htmlFor="email">Email:</label>
                     <input 
                         className="email"
@@ -67,21 +67,20 @@ function Login() {
                         placeholder="Your password" 
                         required
                     />
-                    <button type='submit'>Log In</button>
+                    <button type='submit'>Sign Up</button>
                 </form>
             </section>
-
-          <p>Don't have an account yet?</p>
-          <Link to={`/signup`}>
-            <button>Sign Up</button>
-          </Link> 
-          <Link to={`/`}>
-            <button>View Demo</button>
-          </Link> 
+            <p>Already have an account?</p>
+            <Link to={`/login`}>
+                <button>Log In</button>
+            </Link> 
+            <Link to={`/`}>
+                <button>View Demo</button>
+            </Link> 
         </main>
         <Footer />
     </div>
-  )
+    )
 }
 
-export default Login;
+export default SignUp;

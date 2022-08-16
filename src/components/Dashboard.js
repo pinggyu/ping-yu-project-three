@@ -9,14 +9,13 @@ import { getDatabase, ref, onValue, remove } from 'firebase/database'
 function Dashboard() {
 
     const [addModal, setModal] = useState(false);
+    const [trips, setTrips] = useState([]);
 
     // add new trip form modal toggle
     const toggleAddModal = (e) => {
     e.preventDefault();
     setModal( !addModal );
     }
-
-    const [trips, setTrips] = useState([]);
 
     // setting up connection to firebase & updating trips collection
     useEffect( () => {
