@@ -1,25 +1,27 @@
 // styles
 import './App.css';
-// components
-import Header from './components/Header';
-import Dashboard from './components/Dashboard';
-import Footer from './components/Footer';
 // animations
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+// router
+import { Routes, Route } from "react-router-dom";
+// pages
+import Main from './pages/Main';
+import TripDetails from './pages/TripDetails';
+import Login from './pages/Login';
 
 function App() {
 
   AOS.init();
 
   return (
-    <div className="pageWrapper">
-      <Header />
-      <main>
-        <Dashboard/>
-      </main>
-      <Footer />
-    </div>
+
+    <Routes>
+      <Route path='/' element= { <Main /> } ></Route>
+      <Route path='/login' element= { <Login /> } ></Route>
+      <Route path='/trip/:tripId' element= {<TripDetails />} ></Route>
+    </Routes>
+
   );
 }
 

@@ -2,7 +2,9 @@ import React from 'react';
 
 function TripDetails() {
   return (
-    <div>TripDetails</div>
+    <div className="pageWrapper">
+        Trip Details
+    </div>
   )
 }
 
