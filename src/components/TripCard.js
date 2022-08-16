@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import objectIsEmpty from '../utils/objectIsEmpty';
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faCircleMinus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCircleMinus } from '@fortawesome/free-solid-svg-icons'
 
 function TripCard({ trip, handleRemoveTrip }) {
 
