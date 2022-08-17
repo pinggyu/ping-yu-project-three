@@ -1,5 +1,5 @@
 // helper functions
-import checkValidActivity from "../utils/checkValidActivity";
+import checkValidInput from "../utils/checkValidInput";
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faCircleMinus, faSquareCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -37,7 +37,7 @@ function AddTripModal({ toggleAddModal }) {
         const cityProfanity = await hasProfanity(city);
         const itineraryProfanity = await hasProfanity(itinerary);
 
-        if (activities.length > 0 && !cityProfanity && !itineraryProfanity) {
+        if (activities.length > 0 && !cityProfanity && !itineraryProfanity && checkValidInput(city) && checkValidInput(itinerary)) {
             const database = getDatabase(firebase);
             const dbRef = ref(database);
             push(dbRef, {
@@ -59,7 +59,7 @@ function AddTripModal({ toggleAddModal }) {
 
         const profanity = await hasProfanity(activity);
 
-        if (activities.length < 5 && checkValidActivity(activity) && !profanity){
+        if (activities.length < 5 && checkValidInput(activity) && !profanity){
             setActivities(activities => [...activities, activity]);
             setActivity(''); 
         } else if (profanity) {
@@ -76,7 +76,7 @@ function AddTripModal({ toggleAddModal }) {
 
     const editActivityValue = (e, index) => {
         e.preventDefault();
-        if (checkValidActivity(editedActivity)) {
+        if (checkValidInput(editedActivity)) {
             const tempArr = [...activities]
             tempArr[index] = editedActivity;
             setActivities(tempArr);
@@ -120,7 +120,6 @@ function AddTripModal({ toggleAddModal }) {
                         onChange={handleCityChange} 
                         value={city} 
                         placeholder="e.g. Toronto" 
-                        required
                     />
 
                     <label htmlFor="itinerary">List name:</label>
@@ -131,7 +130,6 @@ function AddTripModal({ toggleAddModal }) {
                         onChange={handleItineraryChange} 
                         value={itinerary} 
                         placeholder="e.g. A foodie's dream itinerary!" 
-                        required
                     />
                     
                     <label htmlFor="activities">Top activities:</label>

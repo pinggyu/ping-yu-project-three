@@ -5,7 +5,7 @@ function NavigationBar() {
 
   // get current user logged in
   const { user, logOut } = useUserAuth();
-  console.log(user)
+  
   // error state
   const [error, setError] = useState(''); 
 

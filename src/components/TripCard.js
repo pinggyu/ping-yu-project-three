@@ -61,11 +61,11 @@ function TripCard({ trip, handleRemoveTrip }) {
                     <p>{trip.itinerary}</p>
                 </div>
                 <div className="activitiesContainer cardSection">
-                    <p className='cardLabel'>Top activities</p>
-                    <ul>
+                    <p className='cardLabel activitiesLabel'>Top activities</p>
+                    <ul className='activitiesList'>
                         {trip.activities?.map( (activity, index) => {
                         return (
-                            <li className="activitiesListItem" key={index}>- {activity}</li>
+                            <li className="activitiesListItem" key={index}>{activity}</li>
                         )
                         })}
                     </ul>

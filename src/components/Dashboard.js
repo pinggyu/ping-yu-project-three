@@ -77,6 +77,7 @@ function Dashboard() {
                 : null
             }
             <h3>Latest recommendations</h3>
+            <h4>Scroll down on each city card to read more!</h4>
             <div className="tripsContainer">
                 {                
                     trips.map(trip => {
