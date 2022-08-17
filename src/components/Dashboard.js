@@ -70,6 +70,7 @@ function Dashboard() {
 
       {/* Credits */}
       <div className="siteCredits">
+        <h3>Credits</h3>
         <p className="credits">
           Images provided by{' '}
           <a className="footerLink" href="https://unsplash.com/developers">
