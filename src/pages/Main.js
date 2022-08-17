@@ -7,15 +7,15 @@ import Footer from '../components/Footer';
 function Main() {
   return (
     <>
-        <DashboardHeader /> 
-        <main>
+      <DashboardHeader />
+      <main>
         <div className="pageWrapper">
-            <Dashboard/>
-        </div> 
-        </main>
-        <Footer />
+          <Dashboard />
+        </div>
+      </main>
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Main;
