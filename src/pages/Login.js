@@ -105,16 +105,17 @@ function Login() {
             <button type="submit">Log In</button>
           </form>
 
-          <p>
-            Don't have an account yet?{' '}
-            <Link to={`/signup`} className="underlineLink">
-              Sign up now
-            </Link>{' '}
-          </p>
-
-          <button className="demoBtn" onClick={(e) => handleDemoSubmit(e)}>
-            View Demo
-          </button>
+          <div className="otherLinks">
+            <p>
+              Don't have an account yet?{' '}
+              <Link to={`/signup`} className="underlineLink">
+                Sign up now
+              </Link>{' '}
+            </p>
+            <button className="demoBtn" onClick={(e) => handleDemoSubmit(e)}>
+              View Demo
+            </button>
+          </div>
         </section>
       </main>
       <Footer />
