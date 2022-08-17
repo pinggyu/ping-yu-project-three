@@ -25,6 +25,7 @@ function AddTripModal({ toggleAddModal }) {
 
   // profanity filter API
   const hasProfanity = async (string) => {
+    // this variable returns true/false based on whether profanity is detected (true = yes there is)
     const inputHasProfanity = await axios
       .get('https://www.purgomalum.com/service/containsprofanity?text=' + string)
       .then((response) => response.data)

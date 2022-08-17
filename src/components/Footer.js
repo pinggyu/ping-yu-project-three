@@ -6,7 +6,10 @@ function Footer() {
         <a className="footerLink" href="https://github.com/pinggyu">
           Ping Yu
         </a>{' '}
-        at Juno College
+        at{' '}
+        <a className="footerLink" href="https://junocollege.com/">
+          Juno College
+        </a>
       </p>
     </footer>
   );

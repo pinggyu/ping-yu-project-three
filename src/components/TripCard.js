@@ -101,6 +101,7 @@ function TripCard({ trip }) {
           <p className="demoTag">Demo</p>
         ) : (
           <div className="editCardOptions">
+            {/* EDIT BUTTONS COMMENTED OUT - THIS FUNCTION WILL BE IMPLEMENTED LATER */}
             {/* <button className="editSubmitBtn"><FontAwesomeIcon icon={ faSquareCheck } /></button>      */}
             {/* <button className="editBtn"><FontAwesomeIcon icon={ faPenToSquare } /></button> */}
             <button className="deleteBtn" onClick={(e) => toggleConfirmModal(e)}>

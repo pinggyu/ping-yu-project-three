@@ -575,6 +575,12 @@ header {
   text-decoration: underline;
 }
 
+@media screen and (max-width: 340px) {
+  button.logOutBtn {
+    padding: 0 0.3rem;
+  }
+}
+
 .addTripBtn {
   font-size: 0.9rem;
   padding: 1.2rem;

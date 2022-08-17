@@ -22,7 +22,9 @@ function NavigationBar() {
       <p>
         Logged in as <span className="boldText">{user.email ? user.email : 'demo user'}</span>
       </p>
-      <button onClick={handleLogout}>Log Out</button>
+      <button onClick={handleLogout} className="logOutBtn">
+        Log Out
+      </button>
     </nav>
   );
 }
