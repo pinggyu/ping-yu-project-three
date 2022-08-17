@@ -58,12 +58,12 @@ function SignUp() {
     return (
     <div className="pageWrapper">
         <header className='signUpHeader'>
-            <div className="wrapper">
+            <div className="wrapper" data-aos='fade-down' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
                 <h1>Sign Up</h1>
             </div>
         </header>
         <main>
-            <section className="signUpBody wrapper">
+            <section className="signUpBody wrapper" data-aos='fade-up' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
   
                 <form className="signUpForm" onSubmit={handleSubmit}>
                     <h3 className='formTitle'>Create a new account</h3>

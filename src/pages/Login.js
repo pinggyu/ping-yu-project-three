@@ -58,14 +58,14 @@ function Login() {
   return (
     <div className="pageWrapper">
         <header className='loginHeader'>
-            <div className="wrapper">
+            <div className="wrapper" data-aos='fade-down' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
                 <h1>Travel Sheets</h1>
                 <h2>A travel itinerary board to inspire you on your next destination.</h2>  
             </div>
         </header>
 
         <main>
-            <section className="loginBody wrapper">
+            <section className="loginBody wrapper" data-aos='fade-up' data-aos-duration='1200' data-aos-easing='ease' data-aos-delay="0">
 
                 <form className="loginForm" onSubmit={handleSubmit}>
                     <h3 className='formTitle'>Log In</h3>
