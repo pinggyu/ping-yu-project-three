@@ -20,7 +20,7 @@ function NavigationBar() {
 
   return (
     <nav className='wrapper'>
-        <p>You are logged in as <span className='boldText'>{ user.email ? user.email : 'demo user'}</span></p>
+        <p>Logged in as <span className='boldText'>{ user.email ? user.email : 'demo user'}</span></p>
         <button onClick={handleLogout}>Log Out</button>        
     </nav>
   )

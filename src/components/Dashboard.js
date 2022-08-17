@@ -4,18 +4,18 @@ import AddTripModal from './AddTripModal';
 import { useState, useEffect } from 'react';
 // database
 import firebase from '../firebase';
-import { getDatabase, ref, onValue, remove } from 'firebase/database'
+import { getDatabase, ref, onValue } from 'firebase/database'
 import { Link } from 'react-router-dom';
 
 function Dashboard() {
 
-    const [addModal, setModal] = useState(false);
+    const [addModal, setAddModal] = useState(false);
     const [trips, setTrips] = useState([]);
 
     // add new trip form modal toggle
     const toggleAddModal = (e) => {
-    e.preventDefault();
-    setModal( !addModal );
+        e.preventDefault();
+        setAddModal( !addModal );
     }
 
     // setting up connection to firebase & updating trips collection
@@ -51,13 +51,6 @@ function Dashboard() {
         // empty dependency array to call onValue() only when component mounts, so the connection to db is made and can persist until component dismount
     }, [])
 
-    // DELETE CARD FUNCTION
-    const handleRemoveTrip = (tripId) => {
-        const database = getDatabase(firebase);
-        const dbRef = ref(database, `/${tripId}`)
-        remove(dbRef);
-    }
-
     // UPDATE CARD FUNCTION (TO DO)
     
     return (
@@ -77,14 +70,13 @@ function Dashboard() {
                 : null
             }
             <h3>Latest recommendations</h3>
-            <h4>Scroll down on each city card to read more!</h4>
+            <h4>Scroll down on each city card to read more! Note that demo cards cannot be deleted.</h4>
             <div className="tripsContainer">
                 {                
                     trips.map(trip => {
                         return <TripCard 
                         trip={trip}
                         key={trip.key}
-                        handleRemoveTrip={handleRemoveTrip}
                         />
                     })
                 }  

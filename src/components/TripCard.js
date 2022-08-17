@@ -1,14 +1,32 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import objectIsEmpty from '../utils/objectIsEmpty';
+import ConfirmModal from './ConfirmModal';
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleMinus } from '@fortawesome/free-solid-svg-icons'
+// database
+import { getDatabase, ref, remove } from 'firebase/database'
+import firebase from '../firebase';
 
-function TripCard({ trip, handleRemoveTrip }) {
+function TripCard({ trip }) {
 
     const [cityPhoto, setCityPhoto] = useState({});
+    const [confirmModal, setConfirmModal] = useState(false);
     const apiKey = "w67FDoRaQhOOmrxqoRXzmm-BO60eCrBuYsc59kTGMeo";
+
+    // DELETE CARD FUNCTION
+    const handleRemoveTrip = (tripId) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${tripId}`)
+        remove(dbRef);
+    }
+
+    // trigger confirmation
+    const toggleConfirmModal = (e) => {
+        e.preventDefault();
+        setConfirmModal( !confirmModal );
+    }
 
     useEffect ( () => {
         axios({
@@ -78,12 +96,21 @@ function TripCard({ trip, handleRemoveTrip }) {
                             {/* <button className="editBtn"><FontAwesomeIcon icon={ faPenToSquare } /></button> */}
                             <button 
                             className="deleteBtn"
-                            onClick={() => handleRemoveTrip(trip.key)}
+                            onClick={(e) => toggleConfirmModal(e)}
                             >
                                 <FontAwesomeIcon icon={faCircleMinus} />
                             </button>   
                         </div>  
                     )
+                }
+                {
+                    confirmModal ?
+                    ( <ConfirmModal 
+                        toggleConfirmModal = {toggleConfirmModal}
+                        handleRemoveTrip = {handleRemoveTrip}
+                        tripKey = {trip.key}
+                    />) 
+                    : null
                 }
      
             </div>
