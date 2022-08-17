@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Routes, Route} from "react-router-dom";
 // pages
 import Main from './pages/Main';
-import TripDetails from './pages/TripDetails';
+// import TripDetails from './pages/TripDetails';
 import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
 import SignUp from './pages/SignUp';
