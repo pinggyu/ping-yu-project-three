@@ -2,10 +2,10 @@ function Footer() {
   return (
     <footer>
       <p className="copyright">
-        © 2022 - Made by
+        © 2022 - Made by{' '}
         <a className="footerLink" href="https://github.com/pinggyu">
           Ping Yu
-        </a>
+        </a>{' '}
         at Juno College
       </p>
     </footer>

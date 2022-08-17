@@ -71,17 +71,17 @@ function Dashboard() {
       {/* Credits */}
       <div className="siteCredits">
         <p className="credits">
-          Images provided by
+          Images provided by{' '}
           <a className="footerLink" href="https://unsplash.com/developers">
             Unsplash API
-          </a>
-          and profanity filter by
+          </a>{' '}
+          and profanity filter by{' '}
           <a className="footerLink" href="https://www.purgomalum.com/index.html">
             PurgoMalum RESTful API.
           </a>
         </p>
         <p className="credits">
-          Header background provided by
+          Header background provided by{' '}
           <a className="footerLink" href="https://loading.io/">
             loading.io
           </a>
