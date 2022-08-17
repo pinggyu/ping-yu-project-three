@@ -21,6 +21,8 @@ Travelsheets is a web application that allows users to browse for things to do i
 - HTML/CSS
 
 ## Possible improvements
+- Include an API that can verify if the city entered is an actual city
+- Increase the limit on activities entered
 - Add a functionality to create an actual itinerary by drag and dropping activities to Day 1, Day 2, Day 3 etc.
 - Set lists to private or public when user is logged in
 - Ability to save lists to profile
