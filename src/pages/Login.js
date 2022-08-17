@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
-import { signInAnonymously } from 'firebase/auth';
 
 function Login() {
 
@@ -36,7 +35,7 @@ function Login() {
 
         } catch (err){
             setError(err.message);
-            alert(err);
+            alert(error);
         }
     }
 
@@ -52,48 +51,54 @@ function Login() {
 
       } catch (err){
           setError(err.message);
-          alert(err);
+          alert(error);
       }
     }
   
-
   return (
     <div className="pageWrapper">
-        <header>
+        <header className='loginHeader'>
           <h1>Login</h1>
         </header>
         <main>
-            <section className="loginBody">
+            <section className="loginBody wrapper">
+
                 <form className="loginForm" onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        className="email"
-                        type="email" 
-                        id="email" 
-                        onChange={handleEmailChange} 
-                        // value={email} 
-                        placeholder="Your email address" 
-                        required
-                    />
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        className="password"
-                        type="password" 
-                        id="password" 
-                        onChange={handlePasswordChange} 
-                        // value={password} 
-                        placeholder="Your password" 
-                        required
-                    />
+                    <div className="subInput">
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            className="email"
+                            type="email" 
+                            id="email" 
+                            onChange={handleEmailChange} 
+                            value={email} 
+                            placeholder="Your email address" 
+                            required
+                        />
+                    </div>
+
+                    <div className="subInput">
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            className="password"
+                            type="password" 
+                            id="password" 
+                            onChange={handlePasswordChange} 
+                            value={password} 
+                            placeholder="Your password" 
+                            required
+                        />
+                    </div>
                     <button type='submit'>Log In</button>
                 </form>
-            </section>
 
-          <p>Don't have an account yet?</p>
-          <Link to={`/signup`} >
-            <button>Sign Up</button>
-          </Link> 
-            <button onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
+                <p>Don't have an account yet?</p>
+                <Link to={`/signup`} >
+                    <button>Sign Up</button>
+                </Link> 
+                <button className='demobtn' onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
+
+            </section>
         </main>
         <Footer />
     </div>

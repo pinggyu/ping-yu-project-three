@@ -117,6 +117,19 @@ ul {
     list-style: none;
 }
 
+.boldText {
+    font-weight: 600;
+    border-bottom: 2px solid var(--clr-black);
+}
+
+input {
+    padding: 0.6rem;
+    margin: 0 0.5rem 0.5rem 0;
+    border-style: none;
+    border-bottom: 2px solid var(--clr-accent);
+    background-color: transparent;
+}
+
 /* PAGE ELEMENTS */
 
 button {
@@ -206,10 +219,6 @@ button:hover {
 
 .newTripInput {
     width: 400px;
-    padding: 0.6rem;
-    margin: 0 0.5rem 0.5rem 0;
-    border-style: none;
-    border-bottom: 2px solid var(--clr-accent);
 }
 
 @media screen and (max-width: 600px) {
@@ -278,6 +287,15 @@ label {
     color: var(--clr-accent);
 }
 
+/* NAVIGATION */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    z-index: 10;
+}
+
 /* HEADER */
 
 header {
@@ -325,7 +343,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 0;
+    padding-top: 2rem;
 }
 
 .addTripBtn {
@@ -430,11 +448,19 @@ header {
     display: none;
 }
 
+.siteCredits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    font-size: 0.8rem;
+}
+
 /* FOOTER */
+
 footer {
     font-size: 0.8rem;
     text-align: center;
-    padding: 0.8rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -442,8 +468,7 @@ footer {
 }
 
 .copyright{
-    padding: 1.5rem 0 1rem 0;
-    border-top: 1px solid var(--clr-dark-grey);
+    padding: 1rem 0;
 }
 
 .footerLink:hover {
@@ -451,6 +476,7 @@ footer {
 }
 
 /* ERROR PAGE */
+
 .errorPageText {
     flex: 1;
     display: flex;
@@ -459,3 +485,49 @@ footer {
     flex-direction: column;
     gap: 1rem;
 }
+
+/* LOG IN + SIGN UP PAGE */
+
+.subInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.email,
+.password {
+    width: 400px;
+}
+
+@media screen and (max-width: 600px) {
+    .email,
+    .password {
+        width: 100%;
+    }
+}
+
+.loginForm,
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.signUpBody,
+.loginBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.signUpHeader,
+.loginHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--clr-accent);
+}
+
+
+

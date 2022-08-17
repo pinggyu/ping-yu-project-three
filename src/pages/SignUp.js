@@ -35,7 +35,7 @@ function SignUp() {
 
         } catch (err){
             setError(err.message);
-            alert(err);
+            alert(error);
         }
     }
 
@@ -51,46 +51,54 @@ function SignUp() {
 
       } catch (err){
           setError(err.message);
-          alert(err);
+          alert(error);
       }
     }
 
     return (
     <div className="pageWrapper">
-        <header>
+        <header className='signUpHeader'>
             <h1>Sign Up</h1>
         </header>
         <main>
-            <section className="signUpBody">
+            <section className="signUpBody wrapper">
+  
                 <form className="signUpForm" onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        className="email"
-                        type="email" 
-                        id="email" 
-                        onChange={handleEmailChange} 
-                        // value={email} 
-                        placeholder="Your email address" 
-                        required
-                    />
-                    <label htmlFor="password">Password</label>
-                    <input 
-                        className="password"
-                        type="password" 
-                        id="password" 
-                        onChange={handlePasswordChange} 
-                        // value={password} 
-                        placeholder="Your password" 
-                        required
-                    />
+                    <div className="subInput">
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            className="email"
+                            type="email" 
+                            id="email" 
+                            onChange={handleEmailChange} 
+                            // value={email} 
+                            placeholder="Your email address" 
+                            required
+                        />
+                    </div>
+
+                    <div className="subInput">
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            className="password"
+                            type="password" 
+                            id="password" 
+                            onChange={handlePasswordChange} 
+                            // value={password} 
+                            placeholder="Your password" 
+                            required
+                        />
+                    </div>
                     <button type='submit'>Sign Up</button>
                 </form>
+                
+                <p>Already have an account?</p>
+                <Link to={`/login`}>
+                    <button>Log In</button>
+                </Link> 
+                <button className='demobtn' onClick={(e) => handleDemoSubmit(e)}>View Demo</button>      
+
             </section>
-            <p>Already have an account?</p>
-            <Link to={`/login`}>
-                <button>Log In</button>
-            </Link> 
-                <button onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
         </main>
         <Footer />
     </div>
