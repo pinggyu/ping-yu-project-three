@@ -67,7 +67,8 @@ body {
     font-family: var(--ff-body), sans-serif;
     background-color: var(--clr-blue);
     font-size: 0.9rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    line-height: 1.1;
 }
 
 /* TYPOGRAPHY & RESET DEFAULTS */
@@ -104,6 +105,7 @@ h3 {
 
 h4 {
     padding-bottom: 2rem;
+    text-align: center;
 }
 
 a {
@@ -338,6 +340,7 @@ header {
     justify-content: center;
     padding-bottom: 1rem;
     flex: 1;
+    text-align: center;
 }
 
 .imgContainer {
