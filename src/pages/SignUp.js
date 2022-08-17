@@ -58,12 +58,15 @@ function SignUp() {
     return (
     <div className="pageWrapper">
         <header className='signUpHeader'>
-            <h1>Sign Up</h1>
+            <div className="wrapper">
+                <h1>Sign Up</h1>
+            </div>
         </header>
         <main>
             <section className="signUpBody wrapper">
   
                 <form className="signUpForm" onSubmit={handleSubmit}>
+                    <h3 className='formTitle'>Create a new account</h3>
                     <div className="subInput">
                         <label htmlFor="email">Email</label>
                         <input 
@@ -92,11 +95,9 @@ function SignUp() {
                     <button type='submit'>Sign Up</button>
                 </form>
                 
-                <p>Already have an account?</p>
-                <Link to={`/login`}>
-                    <button>Log In</button>
-                </Link> 
-                <button className='demobtn' onClick={(e) => handleDemoSubmit(e)}>View Demo</button>      
+                <p>Already have an account? <Link to={`/login`} className="underlineLink">Log in here</Link></p>
+
+                <button className='demoBtn' onClick={(e) => handleDemoSubmit(e)}>View Demo</button>      
 
             </section>
         </main>

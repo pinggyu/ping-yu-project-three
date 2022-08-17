@@ -58,12 +58,17 @@ function Login() {
   return (
     <div className="pageWrapper">
         <header className='loginHeader'>
-          <h1>Login</h1>
+            <div className="wrapper">
+                <h1>Travel Sheets</h1>
+                <h2>A travel itinerary board to inspire you on your next destination.</h2>  
+            </div>
         </header>
+
         <main>
             <section className="loginBody wrapper">
 
                 <form className="loginForm" onSubmit={handleSubmit}>
+                    <h3 className='formTitle'>Log In</h3>
                     <div className="subInput">
                         <label htmlFor="email">Email</label>
                         <input 
@@ -92,11 +97,9 @@ function Login() {
                     <button type='submit'>Log In</button>
                 </form>
 
-                <p>Don't have an account yet?</p>
-                <Link to={`/signup`} >
-                    <button>Sign Up</button>
-                </Link> 
-                <button className='demobtn' onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
+                <p>Don't have an account yet? <Link to={`/signup`} className="underlineLink">Sign up now</Link> </p>
+                
+                <button className='demoBtn' onClick={(e) => handleDemoSubmit(e)}>View Demo</button>
 
             </section>
         </main>

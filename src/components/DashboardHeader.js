@@ -4,7 +4,7 @@ import NavigationBar from "./NavigationBar";
 function DashboardHeader() {
 
   return (
-      <header>
+      <header className="dashboardHeader">
         <NavigationBar />
         <div className="headerContainer wrapper">
           <div className="headerTextContainer">

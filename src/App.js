@@ -22,7 +22,7 @@ function App() {
     <UserAuthContextProvider>
       <Routes>
 
-        {/* Default route is login (sign up page can be accessed via login and vice versa) */}
+        {/* Default route is login/landing page (sign up page can be accessed via login and vice versa) */}
         <Route path='/login' element= { <Login /> } />
         <Route path='/signup' element= { <SignUp/> } />
 
